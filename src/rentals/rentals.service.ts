@@ -1,14 +1,13 @@
 import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
-import { InjectRepository } from '@nestjs/repository';
+import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Rental, RentalStatus } from './entities/rental.entity';
 import { CarsService } from '../cars/cars.service';
-import { InjectRepository as InjectRepo } from '@nestjs/typeorm';
 
 @Injectable()
 export class RentalsService {
   constructor(
-    @InjectRepo(Rental)
+    @InjectRepository(Rental)
     private rentalsRepository: Repository<Rental>,
     private carsService: CarsService,
   ) {}
