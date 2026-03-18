@@ -12,6 +12,8 @@ import { RentalsModule } from './rentals/rentals.module';
 import { Rental } from './rentals/entities/rental.entity';
 import { PaymentsModule } from './payments/payments.module';
 import { Payment } from './payments/entities/payment.entity';
+import { ReviewsModule } from './reviews/reviews.module';
+import { Review } from './reviews/entities/review.entity';
 
 @Module({
   imports: [
@@ -19,7 +21,7 @@ import { Payment } from './payments/entities/payment.entity';
     TypeOrmModule.forRoot({
       type: 'sqlite',
       database: 'db.sqlite',
-      entities: [User, Car, Rental, Payment],
+      entities: [User, Car, Rental, Payment, Review],
       synchronize: true, // Only for development
     }),
     UsersModule,
@@ -27,6 +29,7 @@ import { Payment } from './payments/entities/payment.entity';
     CarsModule,
     RentalsModule,
     PaymentsModule,
+    ReviewsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
