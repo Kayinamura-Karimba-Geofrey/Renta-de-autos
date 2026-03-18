@@ -10,6 +10,8 @@ import { CarsModule } from './cars/cars.module';
 import { Car } from './cars/entities/car.entity';
 import { RentalsModule } from './rentals/rentals.module';
 import { Rental } from './rentals/entities/rental.entity';
+import { PaymentsModule } from './payments/payments.module';
+import { Payment } from './payments/entities/payment.entity';
 
 @Module({
   imports: [
@@ -17,13 +19,14 @@ import { Rental } from './rentals/entities/rental.entity';
     TypeOrmModule.forRoot({
       type: 'sqlite',
       database: 'db.sqlite',
-      entities: [User, Car, Rental],
+      entities: [User, Car, Rental, Payment],
       synchronize: true, // Only for development
     }),
     UsersModule,
     AuthModule,
     CarsModule,
     RentalsModule,
+    PaymentsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
