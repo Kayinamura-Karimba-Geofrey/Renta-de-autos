@@ -1,4 +1,4 @@
-import { Injectable, ConflictException, NotFoundException, Inject } from '@nestjs/common';
+import { Injectable, ConflictException, NotFoundException, BadRequestException, Inject } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { User, UserRole } from './entities/user.entity';
@@ -12,6 +12,9 @@ export class UsersService {
   ) {}
 
   async create(userData: Partial<User>) {
+    if (!userData.password) {
+      throw new BadRequestException('Password is required');
+    }
     const existingUser = await this.usersRepository.findOne({ where: { email: userData.email } });
     if (existingUser) {
       throw new ConflictException('User with this email already exists');
